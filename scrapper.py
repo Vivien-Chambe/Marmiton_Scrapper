@@ -11,8 +11,12 @@ content = driver.page_source
 soup = BeautifulSoup(content, features="html.parser")
 
 a = soup.find_all('ul', attrs={'txt-dark-gray'})
+b = soup.find_all('li') 
 
-ingredients_list = a.find_all('li')
+for i in soup.find_all('section', attrs={'borderSection ingredients'}):
+    for element in i.findAll(attrs={'class': 'txt-dark-gray'}):
+        for span in element.findAll('span'):
+            print(span.text)
 
 
 driver.close()
