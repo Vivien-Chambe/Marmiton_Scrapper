@@ -5,6 +5,9 @@ import pandas as pd
 
 driver = webdriver.Chrome("C:\\Users\\vivie\\Downloads\\chromedriver_win32\\chromedriver")
 
+#TODO entrer un nom de recette et scrapper la première sur la page
+#TODO recuperer temps de préparation et temps de cuisson
+#TODO recuperer les étapes de la recette
 
 driver.get("https://www.cuisineaz.com/recettes/gratin-dauphinois-simplissime-7094.aspx")
 content = driver.page_source
