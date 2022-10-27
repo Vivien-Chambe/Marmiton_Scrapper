@@ -5,19 +5,32 @@ import pandas as pd
 
 driver = webdriver.Chrome("C:\\Users\\vivie\\Downloads\\chromedriver_win32\\chromedriver")
 
-ingredients = []
+
 driver.get("https://www.cuisineaz.com/recettes/gratin-dauphinois-simplissime-7094.aspx")
 content = driver.page_source
 soup = BeautifulSoup(content, features="html.parser")
 
-a = soup.find_all('ul', attrs={'txt-dark-gray'})
-b = soup.find_all('li') 
+def get_number_of_people(soup):
+    a = soup.find("span", attrs={"id":"LblRecetteNombre"})
+    return a.text
 
-for i in soup.find_all('section', attrs={'borderSection ingredients'}):
-    for element in i.findAll(attrs={'class': 'txt-dark-gray'}):
-        for span in element.findAll('span'):
-            print(span.text)
+def get_ingredients(soup):
+    ingredients = []
+    a = b = c = 0
+    for i in soup.find_all('section', attrs={'borderSection ingredients'}):
+        a+=1
+        for element in i.findAll(attrs={'class': 'txt-dark-gray'}):
+            b+=1
+            for span in element.findAll('span'):
+                c+=1
+                ingredients.append(span.text)
+    print(a, b, c)
+    return ingredients
+
+get_number_of_people(soup)
+gratingredients = get_ingredients(soup)
 
 
+print(gratingredients)
 driver.close()
 exit()
